@@ -78,7 +78,7 @@ def submit_updated_info(user_id):
     db.session.add(user)
     db.session.commit()
 
-    return redirect('/users')
+    return redirect(f'/users/{user_id}')
 
 @app.post('/users/<int:user_id>/delete')
 def delete_user(user_id):

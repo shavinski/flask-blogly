@@ -68,7 +68,25 @@ class UserViewTestCase(TestCase):
             html = resp.get_data(as_text=True)
             self.assertIn("<!-- Testing for show_form -->", html)
 
+    def test_redirection_newUserForm(self):
+        with self.client as c:
+            resp = c.post("/users/new", data = {"first_name": 'test1_first', "last_name": 'test1_last'})
+            self.assertEqual(resp.status_code, 302)
+            self.assertEqual(resp.location, "/users")
+
+    def test_redirection_followed_newUserForm(self):
+        with app.test_client() as client:
+            resp = client.get("/users/new", follow_redirects=True)
+            html = resp.get_data(as_text=True)
+
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn('<!-- Testing for show_form -->', html)
+
     def test_add_user(self):
         with self.client as c:
-            resp = c.get("/users/new", data = {"first_name": None, "last_name": None})
-            self.assertEqual(resp.status_code, )
+            resp = c.post("/users/new", data = {"first_name": 'longfirstnamethatisover35characterslongmakingsureitslonger', "last_name": 'longlastnamethatisover35characterslongmakingsureitslonger', 'image_url': ''})
+            self.assertEqual(resp.status_code, 500)
+    
+
+
+

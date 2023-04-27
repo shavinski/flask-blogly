@@ -1,7 +1,7 @@
 """Models for Blogly."""
 from flask_sqlalchemy import SQLAlchemy
 
-DEFAULT_IMAGE = "https://www.nbmchealth.com/wp-content/uploads/2018/04/default-placeholder.png"
+DEFAULT_IMAGE_URL = "https://cdn.digitbin.com/wp-content/uploads/Intentionally-created-Blank-Profile.jpg"
 
 db = SQLAlchemy() #create a SQLAlchemy instance
 #create a function that ties your db object to your app object
@@ -35,4 +35,4 @@ class User(db.Model):
     image_url = db.Column(
         db.Text,
         nullable = False,
-        default = DEFAULT_IMAGE)
+        default = DEFAULT_IMAGE_URL)
