@@ -7,8 +7,9 @@
         <h1>{{user.first_name}} {{user.last_name}}</h1>
 
         <a href="/users/{{user.id}}/edit"><button class="btn btn-primary">Edit</button></a>
-
-        <a href="/users/{{user.id}}/delete"><button class="btn btn-danger">Delete</button></a>
+        <form action="/users/{{user.id}}/delete" method="POST">
+            <button class="btn btn-danger">Delete</button>
+        </form>
     </div>
 
 

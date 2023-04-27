@@ -60,3 +60,15 @@ class UserViewTestCase(TestCase):
             html = resp.get_data(as_text=True)
             self.assertIn("test1_first", html)
             self.assertIn("test1_last", html)
+
+    def test_show_form(self):
+        with self.client as c:
+            resp = c.get("/users/new")
+            self.assertEqual(resp.status_code, 200)
+            html = resp.get_data(as_text=True)
+            self.assertIn("<!-- Testing for show_form -->", html)
+
+    def test_add_user(self):
+        with self.client as c:
+            resp = c.get("/users/new", data = {"first_name": None, "last_name": None})
+            self.assertEqual(resp.status_code, )

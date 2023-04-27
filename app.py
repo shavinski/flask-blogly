@@ -36,7 +36,7 @@ def add_user():
     #grab data from user input
     first_name = request.form['first_name']
     last_name = request.form['last_name']
-    image_url = request.form['image_url']
+    image_url = request.form['image_url'] or None
 
     #add a new user
     user = User (first_name=first_name, last_name=last_name, image_url=image_url)
@@ -92,6 +92,6 @@ def delete_user(user_id):
 
 # @app.get('/users/<int:user_id>/delete')
 # def reload_users_page(user_id):
-    
+
 
 
