@@ -22,17 +22,22 @@ def show_home():
 
 @app.get('/users')
 def show_allUsers():
+    """Display all users"""
+
+    #TODO: order by name on the database, add docstrings for each view function
 
     users = User.query.all()
     return render_template("all_users.html", users = users)
 
 @app.get('/users/new')
 def show_form():
+    """Deiplay new user form"""
 
     return render_template("new_user_form.html")
 
 @app.post('/users/new')
 def add_user():
+    """Add new user and redirect to all users page"""
     #grab data from user input
     first_name = request.form['first_name']
     last_name = request.form['last_name']
@@ -47,23 +52,21 @@ def add_user():
 
 @app.get('/users/<int:user_id>')
 def load_userid_page(user_id):
-
+    """Display user detail page"""
     user = User.query.get(user_id)
 
-
-    #TODO: Should we have only have the instance here, or should we have first_name = user.first_name, last_name = user.last_name etc
     return render_template('user_detail.html', user = user)
 
 @app.get('/users/<int:user_id>/edit')
 def load_user_edit(user_id):
-
+    """Display user edit form"""
     user = User.query.get(user_id)
 
     return render_template('edit_user.html', user = user)
 
 @app.post('/users/<int:user_id>/edit')
 def submit_updated_info(user_id):
-
+    """Edit user information and redirect to user detail page"""
     user = User.query.get(user_id)
 
     first_name = request.form['first_name']
@@ -82,7 +85,7 @@ def submit_updated_info(user_id):
 
 @app.post('/users/<int:user_id>/delete')
 def delete_user(user_id):
-
+    """Delete user and redirect to all users page"""
     user = User.query.get(user_id)
 
     db.session.delete(user)

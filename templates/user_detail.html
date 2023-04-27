@@ -3,7 +3,7 @@
 {% block content %}
 
     <div class="container m-5">
-        <img src="{{user.image_url}}" alt="profile picture">
+        <img src="{{user.image_url}}" class="img-thumbnail " alt="profile picture">
         <h1>{{user.first_name}} {{user.last_name}}</h1>
 
         <a href="/users/{{user.id}}/edit"><button class="btn btn-primary">Edit</button></a>
@@ -12,5 +12,5 @@
         </form>
     </div>
 
-
+<!-- Testing for user_detail -->
 {% endblock %}
