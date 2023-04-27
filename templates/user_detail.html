@@ -12,5 +12,17 @@
         </form>
     </div>
 
+    <div>
+        <h2>Posts</h2>
+        <ul>
+            {% for post in posts %}
+            <li><a href="">{{post.title}}</a></li>
+            {% endfor %}
+        </ul>
+
+        <button href="/users/{{user.id}}/posts/new">Add Post</button>
+    </div>
+
+
 <!-- Testing for user_detail -->
 {% endblock %}

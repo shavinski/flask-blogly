@@ -93,8 +93,14 @@ def delete_user(user_id):
 
     return redirect('/users')
 
-# @app.get('/users/<int:user_id>/delete')
-# def reload_users_page(user_id):
+@app.get('/users/<int:user_id>/posts/new')
+def show_post_form(user_id):
+    """Show new post form"""
+    user = User.query.get(user_id)
+
+    return render_template("new_post_form.html", user=user)
+
+
 
 
 
