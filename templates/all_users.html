@@ -4,8 +4,16 @@
 
 <!-- add list of users -->
 
-<a href="/users/new">
-    <button>Add User</button>
-</a>
-
-{% endblock %}
+<div class="container m-5">
+    <ul>
+        {% for user in users %}
+            <li><a href="/users/{{user.id}}">{{user.first_name}}</a></li>
+        {% endfor %}
+        
+        <a href="/users/new">
+            <button class="btn btn-primary mt-5">Add User</button>
+        </a>
+        
+        {% endblock %}
+    </ul>
+</div>
