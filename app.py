@@ -113,6 +113,54 @@ def add_post(user_id):
 
     return redirect(f'/users/{user_id}')
 
+@app.get('/posts/<int:post_id>')
+def load_individual_post(post_id):
+    """Loads page for the post selected"""
+
+    post = Post.query.get(post_id)
+
+    return render_template('individual_post.html', post = post)
+
+@app.get('/posts/<int:post_id>/edit')
+def load_edit_post_form(post_id):
+    """ Load edit form page template"""
+
+    post = Post.query.get(post_id)
+
+    return render_template('edit_post.html', post = post)
+
+@app.post('/posts/<int:post_id>/edit')
+def update_post_info(post_id):
+    """Updates post info in database and webpage"""
+    post = Post.query.get(post_id)
+
+    title = request.form['title']
+    content = request.form['content']
+
+    post.title = title
+    post.content = content
+
+    db.session.add(post)
+    db.session.commit()
+
+    return redirect(f'/posts/{post_id}')
+
+@app.post('/posts/<int:post_id>/delete')
+def delete_post(post_id):
+    """Delete an individual post"""
+
+    post = Post.query.get(post_id)
+    user_id = post.user.id
+
+    db.session.delete(post)
+    db.session.commit()
+
+    return redirect(f'/users/{user_id}')
+
+
+
+
+
 
 
 
